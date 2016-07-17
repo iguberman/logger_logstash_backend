@@ -53,7 +53,7 @@ defmodule LoggerLogstashBackend do
              |> Map.put(:level, to_string(level))
              |> inspect_pids
 
-    ts = Timex.datetime(ts, :local)
+    ts = Timex.to_datetime(ts, :local)
     {:ok, json} = JSX.encode %{
       type: type,
       "@timestamp": Timex.format!(ts, "%FT%T%z", :strftime),
